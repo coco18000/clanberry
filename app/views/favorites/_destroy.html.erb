@@ -1,0 +1,4 @@
+<%= link_to favorite_path(current_user.favorites.find_by(video_id: video.id)), remote: true, method: :delete, class: 'favorite-link' do %>
+  <i class="fa fa-star favorite-star">お気に入り解除</i>
+<% end %>
+

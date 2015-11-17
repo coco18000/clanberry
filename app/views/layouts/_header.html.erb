@@ -1,0 +1,47 @@
+<header class="navbar navbar-fixed-top navbar-default">
+  <div class="navbar-inner">
+    <div class="container"  id="container">
+      <!-- 左側 -->
+      <div class="left_box">
+        <span class="help"><%= link_to "Help", '#' %></span>
+      </div>
+      <!-- ロゴ -->
+      <div class="logo_box">
+        <%= link_to image_tag('logo/logo.png'), root_path %>
+      </div>
+      <!-- 右側 -->
+      <div class="right_box">
+        <!-- 検索フィールド -->
+        <form class="navbar-form navbar-right" role="search">
+            <input type="text" class="form-control" placeholder="Search">
+            <%= image_tag('icons/search.png') %>
+            <!-- <button type="submit" class="btn btn-default"></button> -->
+        </form>
+
+        <!-- ユーザー -->
+        <ul class="nav navbar-nav navbar-right">
+          <% if signed_in? %>
+          <li id="fat-menu" class="dropdown">
+            <a href='#' class="dropdown-toggle" data-toggle="dropdown" id="main_btn">
+              <%= current_user.user_name %> <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'Profile', current_user %></li>
+              <li><%= link_to 'Post a Video', new_video_path %></li>
+              <li><%= link_to 'Settings', edit_user_path(current_user) %></li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to 'Sign out', signout_path, method: 'delete' %>
+              </li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to 'Sign in', signin_path, id: "main_btn" %></li>
+        <% end %>
+      </div>
+
+      
+      
+    </div>
+  </div>
+</header>

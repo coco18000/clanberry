@@ -1,0 +1,5 @@
+<% if current_user.favorite?(video) %>
+  <%= render 'favorites/destroy', video: video %>
+<% else %>
+  <%= render 'favorites/create', video: video %>
+<% end %>

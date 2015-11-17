@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CLanberry</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  <%= render 'layouts/shim' %>
+</head>
+<body>
+  <div class="header">
+  <%= render 'layouts/header' %>
+  </div>
+  <div class="container" id="container">
+    <div class="sidebar">
+      <%= render 'layouts/sidebar' %>
+    </div>
+    <div class="main">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+      <%= yield %>
+    </div><!-- end main-->
+  </div>
+  <%= render 'layouts/footer' %>
+  <!--
+  <div id="debug">
+  <%= debug(params) if Rails.env.development? %>
+  </div>
+  -->
+
+
+</body>
+</html>

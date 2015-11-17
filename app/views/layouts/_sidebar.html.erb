@@ -1,0 +1,41 @@
+<h2>Categories</h2>
+<div class="icons">
+	<%= link_to image_tag('categories/chemistry.png', class: "icon"), search_tag_path("chemistry") %>
+	<%= link_to image_tag('categories/geography.png', class: "icon"), search_tag_path("geography") %>
+	<%= link_to image_tag('categories/electronic.png', class: "icon"), search_tag_path("electronic") %>
+	<%= link_to image_tag('categories/mechanic.png', class: "icon"), search_tag_path("mechanic") %>
+</div>
+<h2>Events</h2>
+<div class="events">
+	<div class="event_box">
+		<%= link_to image_tag('sidebar/event01.jpg', class: "event"), '#' %>
+		<div class="text_bg"></div>
+		<p>エンジニア必見！次世代型ウェアラブルデバイスRingを使ったハカッソン開催！</p>
+	</div>
+	<div class="event_box">
+		<%= link_to image_tag('sidebar/event02.jpg', class: "event"), '#' %>
+		<div class="text_bg"></div>
+		<p>アンケートに答えてポイントをゲットしよう！</p>
+	</div>
+</div>
+<h2>Tags</h2>
+<div class="tags_array">
+  <% ActsAsTaggableOn::Tag.most_used.each do |tag| %>
+    <% tags_count = '(' + tag.taggings_count.to_s + ')' %>
+    <button class="btn btn-primary tags_index">
+      <span class="tags_content"><%= link_to tag.name+tags_count, search_tag_path(tag.name) %></span>
+    </button>
+  <% end %>
+</div>
+
+<div class="events">
+  <div class="event_box">
+    <%= link_to image_tag('sidebar/ad01.jpg', class: "event"), '#' %>
+  </div>
+  <div class="event_box">
+    <%= link_to image_tag('sidebar/ad02.png', class: "event"), '#' %>
+  </div>
+    <div class="event_box">
+    <%= link_to image_tag('sidebar/ad03.jpg', class: "event"), '#' %>
+  </div>
+</div>

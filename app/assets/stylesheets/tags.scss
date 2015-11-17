@@ -1,0 +1,16 @@
+.tags_index {
+  margin-left: 2px;
+  margin-top: 4px;
+  span {
+    margin: 5px;
+    font-size: 0.8em;
+    a {
+      color: white;
+    }
+  }
+  border-radius: 5px;        /* CSS3草案 */  
+  -webkit-border-radius: 5px;    /* Safari,Google Chrome用 */  
+  -moz-border-radius: 5px;   /* Firefox用 */ 
+  background-color: #F69898;
+  border: none;
+}

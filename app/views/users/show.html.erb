@@ -1,0 +1,96 @@
+<div class="user_wrapper">
+    <!-- 設定ボタン -->
+    
+    <% if current_user.id == @user.id %>
+    <%= link_to (image_tag "icons/setting.png"), edit_user_path(@user.id), class: "setting" %>
+    <% end %>
+  
+  <!-- アイコン -->
+  <div class="icon">
+    <% if @user.avatar? %>
+      <%= image_tag @user.avatar.url, :size => "100x100" %>
+    <% else %>
+      <%= image_tag 'noimage.jpg', :size => "100x100" %>
+    <% end %>
+  </div>
+  <!-- プロフィール -->
+  <div class="profile_box">
+    <p class="name"><%= @user.user_name  %></p>
+    <p class="description"><%= @user.description %></p>
+    
+    <%= render 'shared/error_message' %>
+    <% unless current_user.id == @user.id %>
+    <%= link_to :new_message do %>
+    <button class="btn btn-primary tags_index">
+      <span class="tags_content">メッセージを送る</span>
+    </button>
+    <% end %>
+    <button class="btn btn-primary tags_index">
+      <span class="tags_content">フォローする</span>
+    </button>
+    <% end %>
+  </div>
+
+    
+</div>
+
+
+<div class="videos">
+  <h2>All Movies</h2>
+  <% Video.where(user_id: @user.id).each do |video| %>
+  <div class="wrapper">
+    <%= link_to video do %>
+    <div class="mask">
+      <video src="<%= video.videofile.url %>" preload="metadata">
+        お使いのブラウザが動画をサポートしていません。
+      </video>
+    </div>
+    <% end %>
+    
+    <!-- ユーザーアイコン -->
+    <div class="user_icon">
+      <% if User.find(video.user_id).avatar? %>
+       <%= image_tag User.find(video.user_id).avatar.thumb.url, :size => "37x37" %>
+       <% else %>
+         <%= image_tag 'noimage.jpg', :size => "37x37" %>
+       <% end %>
+    </div>
+
+    <!-- タイトル -->
+    <h3><%= link_to video.title, video_path(video.id) %></h3>
+    
+    <div class="movie_footer">
+      <!-- お気に入り数 -->
+      <div class="star">
+        <%= image_tag 'icons/star.png' %>
+        <span><%= Favorite.where(video_id: video.id).count %></span>
+      </div>
+      <!-- コメント数 -->
+      <div class="comment">
+        <%= image_tag 'icons/comment.png' %>
+        <span><%= Comment.where(video_id: video.id).count %></span>
+      </div>
+
+      <!-- 投稿時間 -->
+      <div class="time">
+        <% time_ago_str = '' %>
+        <% if (Time.now - video.created_at).to_i/3600 < 1 %>
+         <% time_ago = ((Time.now - video.created_at).to_i/60).to_s + "m ago" %>
+        <% else %>
+         <% time_ago = ((Time.now - video.created_at).to_i/3600).to_s + "h ago" %>
+        <% end %>  
+        <%= time_ago %>
+      </div>
+    </div>
+
+  </div>
+  <% end %>
+</div>
+
+
+<h2>Favorite</h2>
+<div class="fav_index">
+  <% @user.favorites.each do |fav| %>
+    <p><%= link_to Video.find(fav.video_id).title, video_path(fav.video_id) %></p>
+  <% end %>
+</div>

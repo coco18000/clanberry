@@ -1,0 +1,2 @@
+$('#video_<%= @video.id %>').html('<%= escape_javascript(render("favorites/favorite_btn", video: @video)) %> ');
+$('#favorites').text('<%= current_user.favorites.count %>');

@@ -1,0 +1,22 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.wrapper {
+  width: 100%;
+  height: 100px;
+}
+
+.profile_avatar {
+  width: 30%;
+  float: left;
+}
+
+.profile_sentence {
+  width: 70%;
+  float: right;
+}
+
+.to_edit {
+  float: right;
+}

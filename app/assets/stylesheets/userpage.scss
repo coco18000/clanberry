@@ -1,0 +1,83 @@
+
+$keycolor: #F69898;
+$graycolor_01: #464444;
+$graycolor_02: #AFAFAF;
+$graycolor_03: #E8E8E8;
+
+.user_wrapper {
+	position: relative;
+	background-color: #fff;
+	border-radius: 5px;
+	border: 1px solid $graycolor_03;
+	padding: 30px 20px;
+	height: auto;
+	overflow: hidden;
+	margin-bottom: 30px;
+
+	.setting {
+		position: absolute;
+		right: 20px;
+		top: 15px;
+
+		img {
+			width: 25px;
+		}
+		img:hover {
+			opacity: 0.5;
+		}
+	}
+
+	.icon {
+		display: inline-block;
+		width: 150px;
+		height: 150px;
+
+		img {
+			width: 100%;
+			height: 100%;
+			border-radius: 150px;
+		}	
+	}
+
+	.profile_box {
+		display: inline-block;
+		vertical-align: top;
+		width: 520px;
+		padding: 5px 20px;
+
+		.name {
+			color: $graycolor_01;
+			font-size: 25px;
+			font-weight: bold;
+		}
+		.description {
+			margin-top: 10px;
+			color: $graycolor_01;
+			font-size: 13px;
+			line-height: 1.2em;
+		}
+
+		button {
+			margin-top: 20px;
+			margin-right: 10px;
+			width: 180px;
+			height: 40px;
+
+			span {
+				font-weight: bold;
+				font-size: 13px;
+			}
+		}
+		button:hover {
+			opacity: 0.8;
+			background: $keycolor;
+		}
+	}
+}
+
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+<div class="videos">
+	<h2>All Movies</h2>
+	<% @videos.each do |video| %>
+	<div class="wrapper">
+		<%= link_to video do %>
+		<div class="mask">
+			<video src="<%= video.videofile.url %>" preload="metadata">
+				お使いのブラウザが動画をサポートしていません。
+			</video>
+		</div>
+		<% end %>
+		
+		<!-- ユーザーアイコン -->
+		<div class="user_icon">
+			<% if User.find(video.user_id).avatar? %>
+		   <%= link_to (image_tag User.find(video.user_id).avatar.thumb.url, :size => "37x37"), user_path(video.user_id) %>
+			 <% else %>
+			   <%= link_to (image_tag 'noimage.jpg', :size => "37x37"), user_path(video.user_id) %>
+			 <% end %>
+		</div>
+
+		<!-- タイトル -->
+		<h3><%= link_to video.title, video_path(video.id) %></h3>
+		
+		<div class="movie_footer">
+			<!-- お気に入り数 -->
+			<div class="star">
+				<%= image_tag 'icons/star.png' %>
+				<span><%= Favorite.where(video_id: video.id).count %></span>
+			</div>
+			<!-- コメント数 -->
+			<div class="comment">
+				<%= image_tag 'icons/comment.png' %>
+				<span><%= Comment.where(video_id: video.id).count %></span>
+			</div>
+
+			<!-- 投稿時間 -->
+			<div class="time">
+				<% time_ago_str = '' %>
+				<% if (Time.now - video.created_at).to_i/3600 < 1 %>
+				 <% time_ago = ((Time.now - video.created_at).to_i/60).to_s + "m ago" %>
+				<% else %>
+				 <% time_ago = ((Time.now - video.created_at).to_i/3600).to_s + "h ago" %>
+				<% end %>  
+				<%= time_ago %>
+			</div>
+		</div>
+
+	</div>
+	<% end %>
+</div>
